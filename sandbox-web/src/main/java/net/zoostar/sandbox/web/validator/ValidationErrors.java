@@ -16,20 +16,13 @@ public class ValidationErrors implements Serializable {
 	public ValidationErrors() {
 		super();
 	}
-
-	public void addFieldError(String path, String message) {
-		FieldError error = new FieldError(path, message);
-		fieldErrors.add(error);
-	}
 	
 	public List<FieldError> getFieldErrors() {
 		return this.fieldErrors;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ValidationErrors [fieldErrors=").append(fieldErrors).append("]");
-		return builder.toString();
+	public void addFieldError(String path, String message) {
+		FieldError error = new FieldError(path, message);
+		fieldErrors.add(error);
 	}
 }
