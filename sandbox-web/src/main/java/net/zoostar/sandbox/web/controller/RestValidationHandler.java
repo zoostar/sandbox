@@ -27,6 +27,7 @@ public class RestValidationHandler {
 		ValidationErrors errors = new ValidationErrors();
 		for(FieldError error : result.getFieldErrors()) {
 			errors.addFieldError(error.getCode(), error.getDefaultMessage());
+			logger.warn("Adding error: {}", error);
 		}
 		return errors;
 	}

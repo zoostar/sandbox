@@ -3,16 +3,28 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-	<display-name>sandbox-web</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-
+	<display-name>sandbox</display-name>
+<!-- 	<welcome-file-list> -->
+<!-- 		<welcome-file>swagger-ui.html</welcome-file> -->
+<!-- 	</welcome-file-list> -->
+<!-- 	<context-param> -->
+<!-- 		<description>Load Spring Context Config</description> -->
+<!-- 		<param-name>contextConfigLocation</param-name> -->
+<!-- 		<param-value>/WEB-INF/sandbox-spring-beans.xml</param-value> -->
+<!-- 	</context-param> -->
+<!-- 	<listener> -->
+<!-- 		<description>Spring Context Load Listener</description> -->
+<!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+<!-- 	</listener> -->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>swagger-ui</servlet-name> -->
+<!-- 		<servlet-class>javax.servlet.GenericServlet</servlet-class> -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>swagger-ui</servlet-name> -->
+<!-- 		<url-pattern>swagger-ui.html</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	<servlet>
 		<servlet-name>sandbox</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

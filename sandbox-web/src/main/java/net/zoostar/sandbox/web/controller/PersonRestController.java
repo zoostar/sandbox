@@ -19,9 +19,9 @@ import net.zoostar.sandbox.web.validator.PersonValidator;
 
 @RestController
 @RequestMapping("/api")
-public class ValidationRestController {
+public class PersonRestController {
 	
-	static final Logger logger = LoggerFactory.getLogger(ValidationRestController.class);
+	static final Logger logger = LoggerFactory.getLogger(PersonRestController.class);
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
