@@ -28,4 +28,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<modules>
+		<module>sandbox-web</module>
+	</modules>
 </project>
