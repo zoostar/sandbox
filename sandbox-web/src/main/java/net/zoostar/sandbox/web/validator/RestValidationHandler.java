@@ -1,4 +1,4 @@
-package net.zoostar.sandbox.web.controller;
+package net.zoostar.sandbox.web.validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import net.zoostar.sandbox.module.exception.SandboxException;
-import net.zoostar.sandbox.web.validator.ValidationErrors;
 
 @ControllerAdvice
 public class RestValidationHandler {
