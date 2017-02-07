@@ -2,6 +2,7 @@ package net.zoostar.sandbox.web.controller;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.zoostar.sandbox.model.Person;
+import net.zoostar.sandbox.module.exception.DuplicateEntityException;
 import net.zoostar.sandbox.web.validator.PersonValidator;
 
 @RestController
@@ -30,7 +32,10 @@ public class PersonRestController {
 	}
 
 	@RequestMapping(path="/person", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Person> createNewPerson(@Valid @RequestBody Person person) {
+	public ResponseEntity<Person> createNewPerson(@Valid @RequestBody Person person) throws DuplicateEntityException {
+		if(StringUtils.isNotBlank(person.getSsn())) {
+			throw new DuplicateEntityException(String.format("Person with SSN %s already exists.", person.getSsn()));
+		}
 		return new ResponseEntity<>(person, HttpStatus.CREATED);
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import net.zoostar.sandbox.module.exception.SandboxException;
 import net.zoostar.sandbox.web.validator.ValidationErrors;
 
 @ControllerAdvice
@@ -22,7 +23,7 @@ public class RestValidationHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ValidationErrors processValidationError(MethodArgumentNotValidException ex) {
-		logger.warn("Processing errors...");
+		logger.error("Processing MethodArgumentNotValidException errors...");
 		BindingResult result = ex.getBindingResult();
 		ValidationErrors errors = new ValidationErrors();
 		for(FieldError error : result.getFieldErrors()) {
@@ -30,6 +31,14 @@ public class RestValidationHandler {
 			logger.warn("Adding error: {}", error);
 		}
 		return errors;
+	}
+
+	@ExceptionHandler(SandboxException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public String processValidationError(SandboxException ex) {
+		logger.error(ex.getMessage(), ex);
+		return ex.getMessage();
 	}
 
 }

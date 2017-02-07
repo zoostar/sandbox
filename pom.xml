@@ -30,5 +30,6 @@
 	</build>
 	<modules>
 		<module>sandbox-web</module>
+		<module>sandbox-module</module>
 	</modules>
 </project>
