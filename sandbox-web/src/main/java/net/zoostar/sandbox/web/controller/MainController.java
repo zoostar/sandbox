@@ -19,8 +19,8 @@ public class MainController {
 	
 	@ApiIgnore
 	@RequestMapping(value="/", produces=MediaType.TEXT_HTML_VALUE)
-	public void loadMain(HttpServletResponse response) throws IOException {
+	public String loadMain(HttpServletResponse response) throws IOException {
 		logger.info("Redirecting to swagger-ui.html");
-		response.sendRedirect("swagger-ui.html");
+		return "swagger-ui";
 	}
 }

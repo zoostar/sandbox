@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import net.zoostar.sandbox.module.exception.SandboxException;
 
 @ControllerAdvice
-public class RestValidationHandler {
+public class MethodArgumentValidationHandler {
 	
-	static final Logger logger = LoggerFactory.getLogger(RestValidationHandler.class);
+	static final Logger logger = LoggerFactory.getLogger(MethodArgumentValidationHandler.class);
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -21,7 +21,7 @@ public class PersonValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		logger.info("Validating entity Person...");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ssn", HttpStatus.UNPROCESSABLE_ENTITY.toString(), "SSN cannot be empty!");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ssn", HttpStatus.UNPROCESSABLE_ENTITY.toString(), "SSN may not be empty!");
 	}
 
 }
