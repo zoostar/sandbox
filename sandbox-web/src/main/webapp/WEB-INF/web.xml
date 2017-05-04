@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
-	<display-name>sandbox</display-name>
-<!-- 	<welcome-file-list> -->
-<!-- 		<welcome-file>swagger-ui.html</welcome-file> -->
-<!-- 	</welcome-file-list> -->
-<!-- 	<context-param> -->
-<!-- 		<description>Load Spring Context Config</description> -->
-<!-- 		<param-name>contextConfigLocation</param-name> -->
-<!-- 		<param-value>/WEB-INF/sandbox-spring-beans.xml</param-value> -->
-<!-- 	</context-param> -->
-<!-- 	<listener> -->
-<!-- 		<description>Spring Context Load Listener</description> -->
-<!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
-<!-- 	</listener> -->
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>swagger-ui</servlet-name> -->
-<!-- 		<servlet-class>javax.servlet.GenericServlet</servlet-class> -->
-<!-- 		<load-on-startup>1</load-on-startup> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>swagger-ui</servlet-name> -->
-<!-- 		<url-pattern>swagger-ui.html</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+<!--      <context-param> -->
+<!--         <param-name>isLog4jAutoInitializationDisabled</param-name> -->
+<!--         <param-value>true</param-value> -->
+<!--     </context-param> -->
+    
+    <display-name>sandbox</display-name>
+	
+    <listener>
+        <listener-class>net.zoostar.sandbox.web.config.CustomLog4jServletContextListener</listener-class>
+    </listener>
+
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>dev</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>sandbox</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
