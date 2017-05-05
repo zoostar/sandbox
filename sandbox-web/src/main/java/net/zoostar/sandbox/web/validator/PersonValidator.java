@@ -1,17 +1,18 @@
 package net.zoostar.sandbox.web.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import net.zoostar.sandbox.model.Person;
+import net.zoostar.sandbox.web.controller.MainController;
 
 public class PersonValidator implements Validator {
 
-	static final Logger logger = LoggerFactory.getLogger(PersonValidator.class);
+	static final Logger logger = LogManager.getLogger(MainController.class);
 	
 	@Override
 	public boolean supports(Class<?> clazz) {

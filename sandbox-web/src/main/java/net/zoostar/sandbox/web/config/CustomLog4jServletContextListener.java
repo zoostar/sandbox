@@ -1,22 +1,21 @@
 package net.zoostar.sandbox.web.config;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import static org.apache.logging.log4j.web.Log4jWebSupport.LOG4J_CONFIG_LOCATION;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 
-import org.apache.log4j.PropertyConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.web.Log4jServletContextListener;
 
-public class CustomLog4jServletContextListener implements ServletContextListener {
+public class CustomLog4jServletContextListener extends Log4jServletContextListener {
 
-	static final Logger logger = LoggerFactory.getLogger(CustomLog4jServletContextListener.class);
+	static final Logger logger = LogManager.getLogger(CustomLog4jServletContextListener.class);
 	
 	static final String SPRING_PROFILE_ACTIVE = "spring.profiles.active";
 	static final String SPRING_PROFILE_DEFAULT = "spring.profiles.default";
@@ -24,8 +23,26 @@ public class CustomLog4jServletContextListener implements ServletContextListener
 	static final Collection<String> SUPPORTED_ENVS = new ArrayList<>(Arrays.asList(DEFAULT_ENV,"int","qa","prod"));
 	
 	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		ServletContext context = sce.getServletContext();
+	public void contextInitialized(ServletContextEvent event) {
+		String env = parseEnvironment(event.getServletContext());
+		
+		String log4jConfiguration = "log4j2.properties";
+		if(DEFAULT_ENV.equals(env)) {
+			log4jConfiguration = "/WEB-INF/dev/log4j2.properties";
+		} else if("int".equals(env)) {
+			log4jConfiguration = "/WEB-INF/int/log4j2.properties";
+		}
+		event.getServletContext().setInitParameter(LOG4J_CONFIG_LOCATION, log4jConfiguration);
+		
+		super.contextInitialized(event);
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		//Do nothing
+	}
+
+	protected String parseEnvironment(ServletContext context) {
 		String strProfiles = System.getProperty(SPRING_PROFILE_ACTIVE) == null ?
 				context.getInitParameter(SPRING_PROFILE_DEFAULT) : System.getProperty(SPRING_PROFILE_ACTIVE);
 		String[] profiles = strProfiles == null ? new String[]{DEFAULT_ENV} : strProfiles.split(",");
@@ -36,19 +53,6 @@ public class CustomLog4jServletContextListener implements ServletContextListener
 				break;
 			}
 		}
-		
-		String path = new StringBuilder("/WEB-INF/").append(env).append("/log4j.properties").toString();
-		try {
-			URL url = context.getResource(path);
-			PropertyConfigurator.configure(url);
-		} catch (MalformedURLException e) {
-			logger.error(e.getMessage(), e);
-		}
+		return env;
 	}
-
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		//Do nothing
-	}
-
 }

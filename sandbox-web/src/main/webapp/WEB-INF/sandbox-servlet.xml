@@ -11,11 +11,10 @@
 <!-- 	<import resource="classpath:META-INF/applicationContext-web.xml"/> -->
 	
 	<context:load-time-weaver/>
- 	<context:component-scan base-package="net.zoostar.sandbox.web.controller, net.zoostar.sandbox.web.validator, net.zoostar.sandbox.web.config"/>
+ 	<context:component-scan base-package="net.zoostar.sandbox.web.controller, net.zoostar.sandbox.web.validator"/>
 
 	<mvc:annotation-driven/>
 	<mvc:view-controller path="/login" view-name="login"/>
-<!-- 	<mvc:view-controller path="/" view-name="swagger-ui.html"/> -->
 	<mvc:resources location="/resources/theme-default/" mapping="/resources/**" cache-period="31556926"/>
 	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
 	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>

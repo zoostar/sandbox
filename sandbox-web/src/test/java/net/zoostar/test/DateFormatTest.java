@@ -5,15 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+
+import net.zoostar.sandbox.web.controller.MainController;
 
 public class DateFormatTest {
 
-	static final Logger logger = LoggerFactory.getLogger(DateFormatTest.class);
+	static final Logger logger = LogManager.getLogger(MainController.class);
 
 	private final String ISO_8601_STRING_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 	
