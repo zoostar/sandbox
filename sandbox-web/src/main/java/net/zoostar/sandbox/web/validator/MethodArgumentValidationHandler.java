@@ -1,7 +1,7 @@
 package net.zoostar.sandbox.web.validator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import net.zoostar.sandbox.module.exception.SandboxException;
-import net.zoostar.sandbox.web.controller.MainController;
 
 @ControllerAdvice
 public class MethodArgumentValidationHandler {
 	
-	static final Logger logger = LogManager.getLogger(MainController.class);
+	static final Logger logger = LoggerFactory.getLogger(MethodArgumentValidationHandler.class);
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

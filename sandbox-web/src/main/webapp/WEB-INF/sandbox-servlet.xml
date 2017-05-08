@@ -11,7 +11,7 @@
 <!-- 	<import resource="classpath:META-INF/applicationContext-web.xml"/> -->
 	
 	<context:load-time-weaver/>
- 	<context:component-scan base-package="net.zoostar.sandbox.web.controller, net.zoostar.sandbox.web.validator"/>
+ 	<context:component-scan base-package="net.zoostar.sandbox.web.config, net.zoostar.sandbox.web.controller, net.zoostar.sandbox.web.validator"/>
 
 	<mvc:annotation-driven/>
 	<mvc:view-controller path="/login" view-name="login"/>

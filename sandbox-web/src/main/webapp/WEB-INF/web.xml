@@ -6,39 +6,53 @@
 
     <display-name>sandbox</display-name>
 	
-    <context-param>
-        <param-name>isLog4jAutoInitializationDisabled</param-name>
-        <param-value>true</param-value>
-    </context-param>
+<!--     <context-param> -->
+<!--         <param-name>isLog4jAutoInitializationDisabled</param-name> -->
+<!--         <param-value>true</param-value> -->
+<!--     </context-param> -->
 <!--     <context-param> -->
 <!-- 		<param-name>log4jConfiguration</param-name> -->
 <!-- 		<param-value>/WEB-INF/classes/log4j2.properties</param-value> -->
 <!-- 	</context-param> -->
+
+	<listener>
+		<listener-class>net.zoostar.sandbox.web.config.EnvConfigurerListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>net.zoostar.sandbox.web.config.Log4JLocationConfigurerListener</listener-class>
+	</listener>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
 		<param-value>dev</param-value>
 	</context-param>
-
+<!-- 	<context-param> -->
+<!-- 		<param-name>log4jConfigLocation</param-name> -->
+<!-- 		<param-name>/WEB-INF/${env.value}/log4j.properties</param-name> -->
+<!-- 	</context-param> -->
 <!--     <listener> -->
 <!--         <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class> -->
 <!--     </listener> -->
-    <listener>
-        <listener-class>net.zoostar.sandbox.web.config.CustomLog4jServletContextListener</listener-class>
-    </listener>
+<!--     <listener> -->
+<!--         <listener-class>net.zoostar.sandbox.web.config.CustomLog4jServletContextListener</listener-class> -->
+<!--     </listener> -->
     
-     <filter>
-        <filter-name>log4jServletFilter</filter-name>
-        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>log4jServletFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>ERROR</dispatcher>
-        <dispatcher>ASYNC</dispatcher>
-    </filter-mapping>
+<!--      <filter> -->
+<!--         <filter-name>log4jServletFilter</filter-name> -->
+<!--         <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class> -->
+<!--     </filter> -->
+<!--     <filter-mapping> -->
+<!--         <filter-name>log4jServletFilter</filter-name> -->
+<!--         <url-pattern>/*</url-pattern> -->
+<!--         <dispatcher>REQUEST</dispatcher> -->
+<!--         <dispatcher>FORWARD</dispatcher> -->
+<!--         <dispatcher>INCLUDE</dispatcher> -->
+<!--         <dispatcher>ERROR</dispatcher> -->
+<!--         <dispatcher>ASYNC</dispatcher> -->
+<!--     </filter-mapping> -->
     
     <servlet>
 		<servlet-name>sandbox</servlet-name>

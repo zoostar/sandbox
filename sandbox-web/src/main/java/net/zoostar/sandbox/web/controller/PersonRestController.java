@@ -2,8 +2,8 @@ package net.zoostar.sandbox.web.controller;
 
 import javax.validation.Valid;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ import net.zoostar.sandbox.web.validator.PersonValidator;
 @RequestMapping("/api")
 public class PersonRestController {
 	
-	static final Logger logger = LogManager.getLogger(MainController.class);
+	static final Logger logger = LoggerFactory.getLogger(PersonRestController.class);
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {

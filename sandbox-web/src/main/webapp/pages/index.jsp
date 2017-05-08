@@ -7,6 +7,7 @@
 <title>sandbox</title>
 </head>
 <body>
-
+	<h2><a href="${pageContext.request.contextPath}/swagger-ui.html">Swagger UI</a></h2>
+	<p/>
 </body>
 </html>

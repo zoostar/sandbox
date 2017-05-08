@@ -4,28 +4,34 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.http.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
 public class MainController {
 
-	static final Logger logger = LogManager.getLogger(MainController.class);
+	static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-//	@ApiIgnore
-//	@RequestMapping(value="/", produces=MediaType.TEXT_HTML_VALUE)
-//	public void loadMain(HttpServletResponse response) throws IOException {
-//		logger.info("Redirecting to swagger-ui.html");
-//		response.sendRedirect("swagger-ui.html");
-//	}
-
-	@RequestMapping(value="/", produces=MediaType.TEXT_HTML_VALUE)
-	public String loadMain(HttpServletResponse response) throws IOException {
-		logger.debug("Redirecting to index.jsp");
-		logger.info("Redirecting to index.jsp");
-		return "index";
+	@ApiIgnore
+	@RequestMapping(value="/")
+	public void loadMain(HttpServletResponse response) throws IOException {
+		logger.debug("Redirecting to swagger-ui.html");
+		logger.info("Redirecting to swagger-ui.html");
+		logger.warn("Redirecting to swagger-ui.html");
+		logger.error("Redirecting to swagger-ui.html");
+		response.sendRedirect("home");
 	}
+
+	@ApiIgnore
+	@RequestMapping(value="/home")
+	public ModelAndView loadHome() {
+		logger.info("Loading home...");
+		return new ModelAndView("index");
+	}
+
 }
